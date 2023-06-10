@@ -24,20 +24,25 @@ app.post('/checkout', async (req, res) => {
             })
         })
 
-        const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
-        const session = await stripe.checkout.sessions.create({
-            success_url: 'https://example.com/success',
-            line_items: lineItems,
-            mode: 'payment',
-        })
-
-        res.json({
-            id: session.id,
-            url: session.url
-        })
-
+        if(req.body.key || process.env.STRIPE_PUBLISHABLE_KEY){
+            if(req.body.key){
+                const stripe = require('stripe')(req.body.key)
+            } else {
+                const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
+            }
+            
+            const session = await stripe.checkout.sessions.create({
+                success_url: 'https://example.com/success',
+                line_items: lineItems,
+                mode: 'payment',
+            })
+    
+            res.json({ url: session.url })
+        } else {
+            res.json({"ERROR": "you didn't pass along your api key..."})
+        }
     } else {
-        res.json({"error": "'products' key does not exist! Make sure you formatted your response body correctly..."})
+        res.json({"ERROR": "'products' key does not exist! Make sure you formatted your response body correctly..."})
     }
 })
 
