@@ -12,6 +12,10 @@ app.get('/', (req,res) => {
     res.send('Hello World!')
 })
 
+app.get('/keytest', (req,res) => {
+    res.send(process.env.STRIPE_PUBLISHABLE_KEY)
+})
+
 app.post('/checkout', async (req, res) => {
     if(req.body.products){
         let lineItems = []
