@@ -37,7 +37,7 @@ app.post('/checkout', async (req, res) => {
             res.json({"ERROR": "you didn't pass along your api key..."})
         }
     } else {
-        res.json({"ERROR": "'products' key does not exist! Make sure you formatted your response body correctly..."})
+        res.json({"ERROR": "'products' key does not exist! Make sure you formatted your response body correctly...", "body": req.body})
     }
 })
 
