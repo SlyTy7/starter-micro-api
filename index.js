@@ -26,9 +26,31 @@ app.get('/checkout', async (req, res) => {
 
 })
 
-app.post('/checkout', (req, res) => {
-    const cart = req.body.products;
-    res.json(cart)
+app.post('/checkout', async (req, res) => {
+    if(req.body.products){
+        let lineItems = []
+
+        req.body.products.forEach(item => {
+            lineItems.push({
+                price: item.id,
+                quantity: item.quantity
+            })
+        })
+
+        const session = await stripe.checkout.sessions.create({
+            success_url: 'https://example.com/success',
+            line_items: lineItems,
+            mode: 'payment',
+        })
+
+        res.json({
+            id: session.id,
+            url: session.url
+        })
+
+    } else {
+        res.json({"error": "'products' key does not exist! Make sure you formatted your response body correctly..."})
+    }
 })
 
 app.listen(process.env.PORT || 3000);
