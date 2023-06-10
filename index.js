@@ -14,7 +14,7 @@ app.get('/checkout', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         success_url: 'https://example.com/success',
         line_items: [
-            {price: 'price_1NHHwqJrPPXiJnm6s6XN3fZD', quantity: 2},
+            {price: 'price_1NHVNYJrPPXiJnm6KSYXdQoW', quantity: 2},
         ],
         mode: 'payment',
     })
