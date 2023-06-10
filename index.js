@@ -19,8 +19,6 @@ app.get('/checkout', async (req, res) => {
         mode: 'payment',
     })
 
-    res.send('Generating link')
-    res.send(session)
     res.json({id: session.id})
 })
 
