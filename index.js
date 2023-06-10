@@ -3,7 +3,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const app = express()
 
-dotenv.config()
+dotenv.config({path: './.env'})
 
 app.use(express.json())
 app.use(cors())
