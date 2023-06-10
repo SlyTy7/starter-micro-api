@@ -12,7 +12,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/keytest', (req,res) => {
-    res.send(process.env.STRIPE_PUBLISHABLE_KEY)
+    res.send(process.env)
 })
 
 app.post('/checkout', async (req, res) => {
