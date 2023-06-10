@@ -2,10 +2,16 @@ const http = require('http')
 const express = require('express')
 const app = express()
 
-const server = http.createServer(function (req, res) {
-    res.write(`Just got a request at ${req.url}!`)
-    res.write('Yo!');
-    res.end();
+app.get('/', (req,res) => {
+    res.send('Hello World!');
+    res.write('Hello World!');
 })
 
-server.listen(process.env.PORT || 3000);
+/*
+const server = http.createServer(function (req, res) {
+    res.write(`Just got a request at ${req.url}!`)
+    res.end();
+})
+*/
+
+app.listen(process.env.PORT || 3000);
