@@ -22,6 +22,4 @@ app.get('/checkout', async (req, res) => {
 
 })
 
-app.listen((process.env.PORT || 3000), () => {
-    console.log('Checkout Session Generator started...')
-});
+app.listen(process.env.PORT || 3000);
