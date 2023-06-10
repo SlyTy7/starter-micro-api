@@ -27,7 +27,8 @@ app.get('/checkout', async (req, res) => {
 })
 
 app.post('/checkout', (req, res) => {
-    res.send(req)
+    console.log(req.body)
+    res.json(req.body)
 })
 
 app.listen(process.env.PORT || 3000);
