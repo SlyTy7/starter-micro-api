@@ -1,7 +1,9 @@
-const http = require('http')
 const express = require('express')
 const app = express()
-const stripe = require('stripe')('sk_test_51MN6VBJrPPXiJnm6eeTaKxhgBfMObAkSIBkV1qsIIuYndUrF3ZBeFAQn5NUGTi2en1Koc4DnmFPU3lTMZtx1fldU002tzdg8wb');
+const stripe = require('stripe')('sk_test_51MN6VBJrPPXiJnm6eeTaKxhgBfMObAkSIBkV1qsIIuYndUrF3ZBeFAQn5NUGTi2en1Koc4DnmFPU3lTMZtx1fldU002tzdg8wb')
+
+app.use(express.json())
+app.use(cors())
 
 app.get('/', (req,res) => {
     res.send('Hello World!')
@@ -15,9 +17,11 @@ app.get('/checkout', async (req, res) => {
         ],
         mode: 'payment',
     })
-    
-    res.send(session)
+
+    res.json({ id: session.id }); 
 
 })
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+    console.log('Checkout Session Generator started...')
+});
