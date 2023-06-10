@@ -2,7 +2,7 @@ const http = require('http')
 const express = require('express')
 const app = express()
 const stripe = require('stripe')('sk_test_51MN6VBJrPPXiJnm6eeTaKxhgBfMObAkSIBkV1qsIIuYndUrF3ZBeFAQn5NUGTi2en1Koc4DnmFPU3lTMZtx1fldU002tzdg8wb');
-const session = await stripe.checkout.sessions.create({
+const session = stripe.checkout.sessions.create({
     success_url: 'https://example.com/success',
     line_items: [
         {price: 'price_H5ggYwtDq4fbrJ', quantity: 2},
