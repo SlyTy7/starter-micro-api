@@ -7,11 +7,8 @@ app.get('/', (req,res) => {
     res.write('Hello World!');
 })
 
-/*
-const server = http.createServer(function (req, res) {
-    res.write(`Just got a request at ${req.url}!`)
-    res.end();
+app.get('/checkout', (req, res) => {
+    res.write('Checkout Links will be generated here.....')
 })
-*/
 
 app.listen(process.env.PORT || 3000);
