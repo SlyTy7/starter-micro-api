@@ -1,9 +1,9 @@
 const cors = require('cors')
 const express = require('express')
-require("dotenv").config()
-const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
+const dotenv = require('dotenv')
 const app = express()
 
+dotenv.config()
 
 app.use(express.json())
 app.use(cors())
@@ -28,6 +28,7 @@ app.post('/checkout', async (req, res) => {
             })
         })
 
+        const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
         const session = await stripe.checkout.sessions.create({
             success_url: 'https://example.com/success',
             line_items: lineItems,
