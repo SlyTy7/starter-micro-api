@@ -3,6 +3,8 @@ const cors = require('cors')
 const app = express()
 const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
 
+require("dotenv").config(); 
+
 app.use(express.json())
 app.use(cors())
 
