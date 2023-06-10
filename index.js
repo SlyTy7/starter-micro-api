@@ -19,9 +19,11 @@ app.get('/checkout', async (req, res) => {
         mode: 'payment',
     })
 
-    // res.json({id: session.id})
+    res.json({
+        id: session.id,
+        url: session.url
+    })
 
-    stripe.redirectToCheckout({ sessionId: session.id })
 })
 
 app.listen(process.env.PORT || 3000);
