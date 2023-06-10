@@ -8,6 +8,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/checkout', (req, res) => {
+    res.send('Hello!');
     res.write('Checkout Links will be generated here.....')
 })
 
