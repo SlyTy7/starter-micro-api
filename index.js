@@ -13,6 +13,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/keytest', (req,res) => {
+    console.log(process.env)
     res.send(process.env)
 })
 
