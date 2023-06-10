@@ -19,7 +19,7 @@ app.get('/checkout', async (req, res) => {
         mode: 'payment',
     })
 
-    res.json({id: session.id})
+    // res.json({id: session.id})
 
     stripe.redirectToCheckout({ sessionId: session.id })
 })
