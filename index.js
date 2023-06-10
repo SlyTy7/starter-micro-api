@@ -1,9 +1,9 @@
-const express = require('express')
 const cors = require('cors')
-const app = express()
+const express = require('express')
+require("dotenv").config()
 const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
+const app = express()
 
-require("dotenv").config(); 
 
 app.use(express.json())
 app.use(cors())
