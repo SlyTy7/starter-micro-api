@@ -27,12 +27,8 @@ app.get('/checkout', async (req, res) => {
 })
 
 app.post('/checkout', (req, res) => {
-    try {
-        const cart = req.body.products;
-        res.json(cart)
-    } catch(e) {
-
-    }
+    const cart = req.body.products;
+    res.json(cart)
 })
 
 app.listen(process.env.PORT || 3000);
