@@ -13,7 +13,6 @@ app.get('/', (req,res) => {
 })
 
 app.get('/keytest', (req,res) => {
-    console.log(process.env)
     res.send(process.env)
 })
 
@@ -28,7 +27,7 @@ app.post('/checkout', async (req, res) => {
             })
         })
 
-        const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
+        const stripe = require('stripe')('sk_test_51MN6VBJrPPXiJnm6eeTaKxhgBfMObAkSIBkV1qsIIuYndUrF3ZBeFAQn5NUGTi2en1Koc4DnmFPU3lTMZtx1fldU002tzdg8wb')
         const session = await stripe.checkout.sessions.create({
             success_url: 'https://example.com/success',
             line_items: lineItems,
