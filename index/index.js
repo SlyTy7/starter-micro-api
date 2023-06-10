@@ -1,9 +1,8 @@
 const cors = require('cors')
 const express = require('express')
 const app = express()
-
-require('dotenv').config()
-
+const dotenv = require('dotenv').config({path: './.env'})
+console.log(dotenv);
 app.use(express.json())
 app.use(cors())
 
