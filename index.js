@@ -18,10 +18,10 @@ app.get('/checkout', async (req, res) => {
         mode: 'payment',
     })
 
-    res.json({ id: session.id }); 
+    res.send(session);
 
 })
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen((process.env.PORT || 3000), () => {
     console.log('Checkout Session Generator started...')
 });
