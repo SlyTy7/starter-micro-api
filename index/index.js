@@ -24,13 +24,8 @@ app.post('/checkout', async (req, res) => {
             })
         })
 
-        if(req.body.key || process.env.STRIPE_PUBLISHABLE_KEY){
-            if(req.body.key){
-                const stripe = require('stripe')(req.body.key)
-            } else {
-                const stripe = require('stripe')(process.env.STRIPE_PUBLISHABLE_KEY)
-            }
-            
+        if(req.body.key){
+            const stripe = require('stripe')(req.body.key);
             const session = await stripe.checkout.sessions.create({
                 success_url: 'https://example.com/success',
                 line_items: lineItems,
