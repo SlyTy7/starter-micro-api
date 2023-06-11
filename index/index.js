@@ -19,7 +19,7 @@ app.post('/checkout', async (req, res) => {
 
         req.body.products.forEach(item => {
             lineItems.push({
-                price: item.id,
+                price: item.price,
                 quantity: item.quantity
             })
         })
