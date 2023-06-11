@@ -42,15 +42,10 @@ app.post('/checkout', async (req, res) => {
 })
 
 app.get('/product/:id/:key', async (req, res) => { 
-    if(req.params.key){
-        const stripe = require('stripe')(req.params.key);
-        const product = await stripe.products.retrieve(req.params.id)
+    const stripe = require('stripe')(req.params.key);
+    const product = await stripe.products.retrieve(req.params.id)
 
-        res.json({ product: product })
-    } else {
-        res.json({"ERROR": "you didn't pass along your api key..."})
-    }
-
+    res.json({ product: product })
 })
 
 app.listen(process.env.PORT || 3000);
