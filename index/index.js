@@ -25,7 +25,7 @@ app.post('/checkout', async (req, res) => {
         })
 
         if(req.body.key){
-            const stripe = require('stripe')(req.body.key);
+            const stripe = require('stripe')(req.body.key)
             const session = await stripe.checkout.sessions.create({
                 success_url: 'https://example.com/success',
                 line_items: lineItems,
@@ -42,10 +42,17 @@ app.post('/checkout', async (req, res) => {
 })
 
 app.get('/product/:id/:key', async (req, res) => { 
-    const stripe = require('stripe')(req.params.key);
+    const stripe = require('stripe')(req.params.key)
     const product = await stripe.products.retrieve(req.params.id)
 
     res.json({ product: product })
+})
+
+app.get('/price/:id/:key', async (req, res) => { 
+    const stripe = require('stripe')(req.params.key)
+    const price = await stripe.prices.retrieve(req.params.id)
+
+    res.json({ price: price })
 })
 
 app.listen(process.env.PORT || 3000);
