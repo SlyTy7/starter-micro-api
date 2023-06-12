@@ -70,7 +70,7 @@ app.get("/prices/:key", async (req, res) => {
         return cleanObj;
     })
 
-	res.json({ prices: prices });
+	res.json({ prices: cleaned });
 });
 
 app.listen(process.env.PORT || 3000);
