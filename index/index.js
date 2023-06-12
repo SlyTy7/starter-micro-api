@@ -61,7 +61,7 @@ app.get("/price/:id/:key", async (req, res) => {
 app.get("/prices/:key", async (req, res) => {
 	const stripe = require("stripe")(req.params.key);
 	const prices = await stripe.prices.list();
-    const cleaned = prices.map(price => {
+    const cleaned = prices.data.map(price => {
         let cleanObj = {
             id: price.id,
             price_in_cents: price.unit_amount
