@@ -55,4 +55,11 @@ app.get('/price/:id/:key', async (req, res) => {
     res.json({ price: price })
 })
 
+app.get('/prices/:key', async (req, res) => {
+    const stripe = require('stripe')(req.params.key)
+    const prices = await stripe.prices.list()
+
+    res.json({ prices: prices })
+})
+
 app.listen(process.env.PORT || 3000);
